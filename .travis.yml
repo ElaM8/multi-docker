@@ -24,8 +24,8 @@ after_success:
 
 
     #  take those images and push them to docker hub
-  - docker push dani888/multi-client ./client
-  - docker push dani888/multi-nginx ./nginx
-  - docker push dani888/multi-server ./server
-  - docker push dani888/multi-worker ./worker
+  - docker push dani888/multi-client
+  - docker push dani888/multi-nginx
+  - docker push dani888/multi-server
+  - docker push dani888/multi-worker
     
