@@ -9,7 +9,7 @@ before_install:
   #   - docker run dani888/react-test npm test -- --coverage
 
 script:
-  - docker run -e CI=true USERNAME/react-test npm test
+  - docker run -e CI=true dani888/react-test npm test
 
 after_success:
   - docker build -t dani888/multi-client ./client
