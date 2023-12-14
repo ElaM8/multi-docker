@@ -16,16 +16,13 @@ after_success:
   - docker build -t dani888/multi-server ./server
   - docker build -t dani888/multi-nginx ./nginx
   - docker build -t dani888/multi-worker ./worker
-
+    
     # log into docker cli via env variables
-
   - echo "$DOCKER_PASSWORD" | docker login - "$DOCKER_ID" --password-stdin
     # logs in echo will get the password from the evn vars and will use it as input to the other side of the | which is the stdin
-
 
     #  take those images and push them to docker hub
   - docker push dani888/multi-client
   - docker push dani888/multi-nginx
   - docker push dani888/multi-server
   - docker push dani888/multi-worker
-    
