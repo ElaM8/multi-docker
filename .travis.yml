@@ -2,30 +2,30 @@ sudo: required
 services: 
   - docker
 
-  before_install:
-    - docker build -t dani888/react-test -f ./client/Dockerfile.dev ./client
+before_install:
+  - docker build -t dani888/react-test -f ./client/Dockerfile.dev ./client
 
   # script: 
   #   - docker run dani888/react-test npm test -- --coverage
 
-     script:
+script:
   - docker run -e CI=true USERNAME/react-test npm test
 
-  after_success:
-    - docker build -t dani888/multi-client ./client
-    - docker build -t dani888/multi-server ./server
-    - docker build -t dani888/multi-nginx ./nginx
-    - docker build -t dani888/multi-worker ./worker
+after_success:
+  - docker build -t dani888/multi-client ./client
+  - docker build -t dani888/multi-server ./server
+  - docker build -t dani888/multi-nginx ./nginx
+  - docker build -t dani888/multi-worker ./worker
 
     # log into docker cli via env variables
 
-    - echo "$DOCKER_PASSWORD" | docker login - "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login - "$DOCKER_ID" --password-stdin
     # logs in echo will get the password from the evn vars and will use it as input to the other side of the | which is the stdin
 
 
     #  take those images and push them to docker hub
-    - docker push dani888/multi-client ./client
-    - docker push dani888/multi-nginx ./nginx
-    - docker push dani888/multi-server ./server
-    - docker push dani888/multi-worker ./worker
+  - docker push dani888/multi-client ./client
+  - docker push dani888/multi-nginx ./nginx
+  - docker push dani888/multi-server ./server
+  - docker push dani888/multi-worker ./worker
     
